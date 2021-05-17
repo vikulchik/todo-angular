@@ -1,0 +1,13 @@
+<form class="add-new-todo" action="#">
+  <input class="add-new-todo__field" type="text" placeholder="add new todo" [(ngModel)]="newTodo" name="new todo">
+  <button class="add-new-todo__btn" type="submit" (click)="create()">add</button>
+</form>
+
+<ul class="todo-list">
+  <li class="todo-list__item" *ngFor="let todo of getAll()" (click)="deleteTodo(todo.id)">
+    {{todo.title}}
+    <span [ngClass]="{'new': todo.status === 'new', 'done' : todo.status === 'done'}">
+      {{todo.status}}
+    </span>
+  </li>
+</ul>

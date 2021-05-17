@@ -1,0 +1,56 @@
+li {
+  list-style-type: decimal;
+}
+
+.todo-list {
+  background-color: honeydew;
+  padding: 20px 50px;
+  position: relative;
+}
+
+.todo-list__item span {
+  position: relative;
+  top: 0;
+  left: 21px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 0 5px;
+  color: #fff;
+}
+
+.done {
+  background-color: green;
+}
+
+.new {
+  background-color: red;
+}
+
+.todo-list__item {
+  margin-bottom: 10px;
+}
+
+.todo-list__item:hover {
+  cursor: pointer;
+}
+
+.add-new-todo__field {
+  margin-right: 20px;
+  padding: 10px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.add-new-todo__field::placeholder {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 16px;
+}
+
+.add-new-todo__btn {
+  border: 0;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  width: 100px;
+  padding: 10px;
+  font-family: 'Titillium Web', sans-serif;
+}
