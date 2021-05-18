@@ -44,7 +44,7 @@ export class TodoServices {
   }
 
   fitlerByStatusDone() {
-    const todoFilterByStatusDone =  this.todos.filter(status => {
+    this.todos =  this.todos.filter(status => {
         return status.status ===  Status.DONE;
     });
 
@@ -52,7 +52,7 @@ export class TodoServices {
   }
 
   fitlerByStatusNew() {
-    const todoFilterByStatusNew = this.todos.filter(status => {
+    this.todos =  this.todos.filter(status => {
       return status.status ===   Status.NEW;
     });
   }
