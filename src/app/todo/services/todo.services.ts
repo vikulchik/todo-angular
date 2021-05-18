@@ -47,6 +47,8 @@ export class TodoServices {
     const todoFilterByStatusDone =  this.todos.filter(status => {
         return status.status ===  Status.DONE;
     });
+
+    //что дальше - не знаю
   }
 
   fitlerByStatusNew() {
