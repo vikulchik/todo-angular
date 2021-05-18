@@ -37,10 +37,22 @@ export class TodoServices {
       title: 'to drip eyes',
       status: Status.NEW,
     }
-  ]
+  ];
 
   getAll(): Todo[] {
-    return this.todos
+    return this.todos;
+  }
+
+  fitlerByStatusDone() {
+    const todoFilterByStatusDone =  this.todos.filter(status => {
+        return status.status ===  Status.DONE;
+    });
+  }
+
+  fitlerByStatusNew() {
+    const todoFilterByStatusNew = this.todos.filter(status => {
+      return status.status ===   Status.NEW;
+    });
   }
 
   create(title: string): void {
@@ -48,7 +60,7 @@ export class TodoServices {
       id: this.todos.length + 1,
       title,
       status: Status.NEW,
-    })
+    });
   }
 
   changeStatus(id: number) {

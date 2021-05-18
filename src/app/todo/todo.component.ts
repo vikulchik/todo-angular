@@ -16,6 +16,14 @@ export class TodoComponent implements OnInit {
     return this.todoService.getAll();
   }
 
+  fitlerByStatusNew() {
+    return this.todoService.fitlerByStatusNew();
+  }
+
+  fitlerByStatusDone() {
+    return this.todoService.fitlerByStatusDone();
+  }
+
   create() {
     const title = this.newTodo.trim();
     if (title) {
