@@ -1,5 +1,7 @@
 # MyTodo
 
+You can see my app on this [LINK](https://vikulchik.github.io/todo-angular/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.12.
 
 ## Development server
