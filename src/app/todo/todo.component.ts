@@ -8,20 +8,32 @@ import {Todo, TodoServices} from "./services/todo.services";
 })
 export class TodoComponent implements OnInit {
   newTodo = '';
+  public todos!: Todo[];
 
-  constructor(private todoService: TodoServices) {
-  }
+  constructor(private todoService: TodoServices) {}
 
   getAll(): Todo[] {
     return this.todoService.getAll();
   }
 
   fitlerByStatusNew() {
-    return this.todoService.fitlerByStatusNew();
+    this.todos = this.todoService.fitlerByStatusNew();
   }
 
   fitlerByStatusDone() {
-    return this.todoService.fitlerByStatusDone();
+    this.todos = this.todoService.fitlerByStatusDone();
+  }
+
+  sortByNew() {
+    this.todoService.sortByNew()
+  }
+
+  sortByOld() {
+    this.todoService.sortByOld()
+  }
+
+  reset() {
+    this.todos = this.todoService.getAll();
   }
 
   create() {
@@ -37,5 +49,6 @@ export class TodoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todos = this.todoService.getAll();
   }
 }

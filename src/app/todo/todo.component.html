@@ -4,8 +4,9 @@
 </form>
 
 <ul class="todo-list">
-  <li class="todo-list__item" *ngFor="let todo of getAll()" (click)="deleteTodo(todo.id)">
+  <li class="todo-list__item" *ngFor="let todo of todos" (click)="deleteTodo(todo.id)">
     {{todo.title}}
+    <span class="todo-list__date">{{todo.createdAt | date:'dd MMMM yyyy'}}</span>
     <span [ngClass]="{'new': todo.status === 'new', 'done' : todo.status === 'done'}">
       {{todo.status}}
     </span>
@@ -14,3 +15,9 @@
 
 <button type="button" class="filterBtn" (click)="fitlerByStatusDone()">Filter by status done</button>
 <button type="button" class="filterBtn" (click)="fitlerByStatusNew()">Filter by status new</button>
+<button type="button" class="filterBtn" (click)="reset()">Reset</button>
+<div>
+  <h3>Sort by date</h3>
+  <button type="button" class="filterBtn" (click)="sortByNew()">↑</button>
+  <button type="button" class="filterBtn" (click)="sortByOld()">↓</button>
+</div>

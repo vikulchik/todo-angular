@@ -9,6 +9,7 @@ export interface Todo {
   id: number;
   title: string;
   status: Status;
+  createdAt: Date;
 }
 
 @Injectable({
@@ -21,21 +22,25 @@ export class TodoServices {
       id: 1,
       title: 'to make a coffee',
       status: Status.NEW,
+      createdAt: new Date('2021-05-01')
     },
     {
       id: 2,
       title: 'to work',
       status: Status.NEW,
+      createdAt: new Date('2021-05-02')
     },
     {
       id: 3,
       title: 'to feed a dog',
       status: Status.NEW,
+      createdAt: new Date('2021-05-03')
     },
     {
       id: 4,
       title: 'to drip eyes',
       status: Status.NEW,
+      createdAt: new Date('2021-05-04')
     }
   ];
 
@@ -44,15 +49,13 @@ export class TodoServices {
   }
 
   fitlerByStatusDone() {
-    this.todos =  this.todos.filter(status => {
+    return this.todos.filter(status => {
         return status.status ===  Status.DONE;
     });
-
-    //что дальше - не знаю
   }
 
   fitlerByStatusNew() {
-    this.todos =  this.todos.filter(status => {
+    return this.todos.filter(status => {
       return status.status ===   Status.NEW;
     });
   }
@@ -62,6 +65,7 @@ export class TodoServices {
       id: this.todos.length + 1,
       title,
       status: Status.NEW,
+      createdAt: new Date()
     });
   }
 
@@ -73,5 +77,17 @@ export class TodoServices {
     if (founded) {
       founded.status = Status.DONE;
     }
+  }
+
+  sortByNew() {
+    this.todos.sort((a, b) => {
+      return <any>new Date(a.createdAt) - <any>new Date(b.createdAt);
+    })
+  }
+
+  sortByOld() {
+    this.todos.sort((a, b) => {
+      return <any>new Date(b.createdAt) - <any>new Date(a.createdAt);
+    })
   }
 }
