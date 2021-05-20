@@ -2,7 +2,6 @@
   <input class="add-new-todo__field" type="text" placeholder="add new todo" [(ngModel)]="newTodo" name="new todo">
   <button class="add-new-todo__btn" type="submit" (click)="create()">add</button>
 </form>
-
 <ul class="todo-list">
   <li class="todo-list__item" *ngFor="let todo of todos" (click)="deleteTodo(todo.id)">
     {{todo.title}}
@@ -12,13 +11,14 @@
     </span>
   </li>
 </ul>
-
 <button type="button" class="filterBtn" (click)="fitlerByStatusDone()">Filter by status done</button>
 <button type="button" class="filterBtn" (click)="fitlerByStatusNew()">Filter by status new</button>
 <button type="button" class="filterBtn" (click)="reset()">Reset</button>
 <div>
-  
   <h3>Sort by date</h3>
   <button type="button" class="filterBtn" (click)="sortByNew()">↑</button>
   <button type="button" class="filterBtn" (click)="sortByOld()">↓</button>
 </div>
+<form class="add-new-todo" action="#">
+  <input class="add-new-todo__field" type="text" placeholder="search by title" name="search title" (change)="filterByTitle($event)">
+</form>

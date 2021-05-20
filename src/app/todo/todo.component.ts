@@ -25,11 +25,11 @@ export class TodoComponent implements OnInit {
   }
 
   sortByNew() {
-    this.todoService.sortByNew()
+    this.todos = this.todoService.sortByNew()
   }
 
   sortByOld() {
-    this.todoService.sortByOld()
+    this.todos = this.todoService.sortByOld()
   }
 
   reset() {
@@ -46,6 +46,10 @@ export class TodoComponent implements OnInit {
 
   deleteTodo(id: number) {
     this.todoService.changeStatus(id);
+  }
+
+  filterByTitle(event: any) {
+    this.todos = this.todoService.filterByTitle(event.target.value);
   }
 
   ngOnInit(): void {

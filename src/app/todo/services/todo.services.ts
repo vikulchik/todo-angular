@@ -50,13 +50,13 @@ export class TodoServices {
 
   fitlerByStatusDone() {
     return this.todos.filter(status => {
-        return status.status ===  Status.DONE;
+      return status.status === Status.DONE;
     });
   }
 
   fitlerByStatusNew() {
     return this.todos.filter(status => {
-      return status.status ===   Status.NEW;
+      return status.status === Status.NEW;
     });
   }
 
@@ -80,14 +80,22 @@ export class TodoServices {
   }
 
   sortByNew() {
-    this.todos.sort((a, b) => {
+    const cloned = [...this.todos]
+    return cloned.sort((a, b) => {
       return <any>new Date(a.createdAt) - <any>new Date(b.createdAt);
     })
   }
 
   sortByOld() {
-    this.todos.sort((a, b) => {
+    const cloned = [...this.todos]
+    return cloned.sort((a, b) => {
       return <any>new Date(b.createdAt) - <any>new Date(a.createdAt);
+    })
+  }
+
+  filterByTitle(title:string) {
+    return this.todos.filter(todo => {
+     return todo.title.toLowerCase().includes(title.toLowerCase().trim());
     })
   }
 }
