@@ -17,32 +17,7 @@ export interface Todo {
 })
 
 export class TodoServices {
-  todos: Todo[] = [
-    {
-      id: 1,
-      title: 'to make a coffee',
-      status: Status.NEW,
-      createdAt: new Date('2021-05-01')
-    },
-    {
-      id: 2,
-      title: 'to work',
-      status: Status.NEW,
-      createdAt: new Date('2021-05-02')
-    },
-    {
-      id: 3,
-      title: 'to feed a dog',
-      status: Status.NEW,
-      createdAt: new Date('2021-05-03')
-    },
-    {
-      id: 4,
-      title: 'to drip eyes',
-      status: Status.NEW,
-      createdAt: new Date('2021-05-04')
-    }
-  ];
+  todos: Todo[] = JSON.parse(localStorage.getItem('Todo') || '[]');
 
   getAll(): Todo[] {
     return this.todos;
@@ -67,6 +42,8 @@ export class TodoServices {
       status: Status.NEW,
       createdAt: new Date()
     });
+
+    localStorage.setItem('Todo', JSON.stringify(this.todos))
   }
 
   changeStatus(id: number) {

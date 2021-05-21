@@ -12,10 +12,6 @@ export class TodoComponent implements OnInit {
 
   constructor(private todoService: TodoServices) {}
 
-  getAll(): Todo[] {
-    return this.todoService.getAll();
-  }
-
   fitlerByStatusNew() {
     this.todos = this.todoService.fitlerByStatusNew();
   }
@@ -53,6 +49,6 @@ export class TodoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todos = this.todoService.getAll();
+    this.todos = this.todoService.getAll()
   }
 }
