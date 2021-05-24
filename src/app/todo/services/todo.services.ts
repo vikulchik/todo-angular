@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Storage} from './storage.services';
+import {Keys} from "../../../constants/keys";
 
 export enum Status {
   NEW = 'new',
@@ -17,19 +19,21 @@ export interface Todo {
 })
 
 export class TodoServices {
-  todos: Todo[] = JSON.parse(localStorage.getItem('Todo') || '[]');
+  constructor(private storage: Storage){}
+
+  todos: Todo[] = this.storage.get(Keys.Todos);
 
   getAll(): Todo[] {
     return this.todos;
   }
 
-  fitlerByStatusDone() {
+  filterByStatusDone() {
     return this.todos.filter(status => {
       return status.status === Status.DONE;
     });
   }
 
-  fitlerByStatusNew() {
+  filterByStatusNew() {
     return this.todos.filter(status => {
       return status.status === Status.NEW;
     });
@@ -43,7 +47,7 @@ export class TodoServices {
       createdAt: new Date()
     });
 
-    localStorage.setItem('Todo', JSON.stringify(this.todos))
+    this.storage.set(Keys.Todos, this.todos);
   }
 
   changeStatus(id: number) {

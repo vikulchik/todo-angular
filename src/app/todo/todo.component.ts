@@ -12,12 +12,12 @@ export class TodoComponent implements OnInit {
 
   constructor(private todoService: TodoServices) {}
 
-  fitlerByStatusNew() {
-    this.todos = this.todoService.fitlerByStatusNew();
+  filterByStatusNew() {
+    this.todos = this.todoService.filterByStatusNew();
   }
 
-  fitlerByStatusDone() {
-    this.todos = this.todoService.fitlerByStatusDone();
+  filterByStatusDone() {
+    this.todos = this.todoService.filterByStatusDone();
   }
 
   sortByNew() {
