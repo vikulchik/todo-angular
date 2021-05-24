@@ -12,6 +12,32 @@ module.exports = __webpack_require__(/*! /Users/vikulchik/Documents/todo/my-todo
 
 /***/ }),
 
+/***/ "6DUV":
+/*!***************************************************!*\
+  !*** ./src/app/todo/services/storage.services.ts ***!
+  \***************************************************/
+/*! exports provided: Storage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Storage", function() { return Storage; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+class Storage {
+    set(key, value) {
+        return localStorage.setItem(key, JSON.stringify(value));
+    }
+    get(key) {
+        return JSON.parse(localStorage.getItem(key) || '[]');
+    }
+}
+Storage.ɵfac = function Storage_Factory(t) { return new (t || Storage)(); };
+Storage.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: Storage, factory: Storage.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
 /***/ "AytR":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -36,6 +62,24 @@ const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+/***/ }),
+
+/***/ "BsU7":
+/*!*******************************!*\
+  !*** ./src/constants/keys.ts ***!
+  \*******************************/
+/*! exports provided: Keys */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Keys", function() { return Keys; });
+var Keys;
+(function (Keys) {
+    Keys["Todos"] = "Todos";
+})(Keys || (Keys = {}));
 
 
 /***/ }),
@@ -259,7 +303,11 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Status", function() { return Status; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoServices", function() { return TodoServices; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _constants_keys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../constants/keys */ "BsU7");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _storage_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storage.services */ "6DUV");
+
+
 
 var Status;
 (function (Status) {
@@ -267,8 +315,9 @@ var Status;
     Status["DONE"] = "done";
 })(Status || (Status = {}));
 class TodoServices {
-    constructor() {
-        this.todos = JSON.parse(localStorage.getItem('Todo') || '[]');
+    constructor(storage) {
+        this.storage = storage;
+        this.todos = this.storage.get(_constants_keys__WEBPACK_IMPORTED_MODULE_0__["Keys"].Todos);
     }
     getAll() {
         return this.todos;
@@ -290,7 +339,7 @@ class TodoServices {
             status: Status.NEW,
             createdAt: new Date()
         });
-        localStorage.setItem('Todo', JSON.stringify(this.todos));
+        this.storage.set(_constants_keys__WEBPACK_IMPORTED_MODULE_0__["Keys"].Todos, this.todos);
     }
     changeStatus(id) {
         const founded = this.todos.find((item) => {
@@ -318,8 +367,8 @@ class TodoServices {
         });
     }
 }
-TodoServices.ɵfac = function TodoServices_Factory(t) { return new (t || TodoServices)(); };
-TodoServices.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: TodoServices, factory: TodoServices.ɵfac, providedIn: 'root' });
+TodoServices.ɵfac = function TodoServices_Factory(t) { return new (t || TodoServices)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_storage_services__WEBPACK_IMPORTED_MODULE_2__["Storage"])); };
+TodoServices.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: TodoServices, factory: TodoServices.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
